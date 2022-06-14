@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 8080; // Step 1
+const PORT = process.env.PORT || 3001; // Step 1
 
 const routes = require('./routes/api');
 const materiaRoutes=require('./routes/materiaRoutes')
