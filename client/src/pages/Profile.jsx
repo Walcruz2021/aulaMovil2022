@@ -1,21 +1,26 @@
 import React from 'react';
-import { useEffect, useState  } from 'react';
-import { useParams } from 'react-router-dom'
+import { useEffect } from 'react';
 import Loader from '../components/Load/Loader';
 import ProfileWrapper from '../components/Profile/ProfileWrapper';
+import host from '../helpers/host';
 import UseFetch from '../hooks/useFetch';
 import '../styles/Profile.css'
+import { useSelector, useDispatch } from "react-redux";
+import { getStudent } from "../reducer/actions";
 
 const Profile = () => {
-    const [dataUser, setDataUser] = useState();
-    let idParams = useParams()
-    let apiCall = async ()=>{
-        let resolve = await UseFetch(`http://localhost:8080/api/getTeacher/${idParams.id}`)
+    const estado = useSelector((state) => state);
+    const student = estado.auth.student 
+    const dispatch = useDispatch();
+
+    let apiCall = async ()=>{ 
+        let resolve = await UseFetch(`${host.development}/stu/getStudent/${estado.auth.user.id}`);
         if(resolve.status === 200){
-            setDataUser(resolve.data)
+            dispatch(getStudent(resolve.data.students));
         }
         
     }
+
 
     useEffect(() => {
         apiCall()
@@ -25,7 +30,7 @@ const Profile = () => {
     return (
         <main className='profile-container'>
             {
-                dataUser ? <ProfileWrapper dataUser={dataUser} /> : <Loader />
+                student ? <ProfileWrapper dataUser={student} email={estado.auth.user.email} id={estado.auth.user.id} /> : <Loader />
             }
            
         </main>

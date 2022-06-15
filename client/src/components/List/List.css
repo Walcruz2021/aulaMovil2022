@@ -23,6 +23,7 @@
     justify-content: center;
     align-items: center;
     border: 1px solid #01b9da;
+    background-color: white;
     padding: 20px 10px 20px 10px;
     margin-top: 10px;
     border-radius: 20px;
@@ -62,6 +63,7 @@
 }
 
 .list-item p{
+    width: 50%;
     margin: 0;
     flex-grow: 0.5;
     text-align: left;
@@ -78,6 +80,9 @@
     cursor: pointer;
 }
 
+.not-subjects{
+    padding-top: 20px;
+}
 
 @media (min-width: 1100px) {
     .main-subjects{

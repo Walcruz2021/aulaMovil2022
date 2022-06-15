@@ -5066,6 +5066,11 @@
   "resolved" "https://registry.npmjs.org/ignore/-/ignore-5.2.0.tgz"
   "version" "5.2.0"
 
+"imgbb-uploader@^1.5.0":
+  "integrity" "sha512-60cEP5Mw48ZM0evf/mo1j/sHPzgaM83z9cdjDRf6DNrpbWk/dw+2UIe2MRtC1HqQ6i9GyJfGOzNbspriWVGTeA=="
+  "resolved" "https://registry.npmjs.org/imgbb-uploader/-/imgbb-uploader-1.5.0.tgz"
+  "version" "1.5.0"
+
 "immer@^9.0.7":
   "integrity" "sha512-ubBeqQutOSLIFCUBN03jGeOS6a3DoYlSYwYJTa+gSKEZKU5redJIqkIdZ3JVv/4RZpfcXdAWH5zCNLWPRv2WDw=="
   "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.14.tgz"

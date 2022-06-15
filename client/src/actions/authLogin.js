@@ -1,14 +1,27 @@
 import { types } from "../types/types";
 
-export const startLogin = (email, password)=>{
+export const startLogin = (data)=>{
+    let parse = {
+        id : data.user._id,
+        email : data.user.username,
+        token : data.token
+    }
     return (dispatch)=>{
-        localStorage.setItem('email', email)
+        localStorage.setItem('userNoClassroom', JSON.stringify(parse))
         dispatch(login({
-            name : 'usuario',
-            email,
+            user : parse
         }))
     }
 
+}
+
+export const logout= ()=>{
+    return(dispatch)=>{
+        localStorage.removeItem('userNoClassroom')
+        dispatch({
+            type : types.authLogout
+        })
+    }
 }
 
 const login = (user)=>({

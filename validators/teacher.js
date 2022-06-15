@@ -28,11 +28,11 @@ const validateCreate = [
         .exists()
         .not()
         .isEmpty(),
-    check("email")
-        .exists()
-        .not()
-        .isEmpty()
-        .isEmail(),
+    // check("email")
+    //     .exists()
+    //     .not()
+    //     .isEmpty()
+    //     .isEmail(),
     check("phone")
         .exists()
         .not()

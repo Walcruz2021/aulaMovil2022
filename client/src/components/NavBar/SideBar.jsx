@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/sideBar.css";
-const SideBar = () => {
+import { useDispatch } from "react-redux"
+import { logout } from "../../actions/authLogin";
+const SideBar = ({user}) => {
+  
+  const dispatch = useDispatch()
+
+  const handleClick = ()=>{
+    dispatch(logout())
+  }
   return (
     <div className="sidebar">
       <div className="page-name">
@@ -15,10 +23,10 @@ const SideBar = () => {
         <Link to="/subjects">
           <i className="fas fa-book-reader"></i> Materias
         </Link>
-        <Link to="/user/profile/6290328166920c04f471eb98">
+        <Link to={`/user/profile/${user.id}`}>
           <i className="fa fa-fw fa-user"></i> Perfil
         </Link>
-        <Link to="#contact">
+        <Link to="" onClick={handleClick}>
           <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
         </Link>
       </div>

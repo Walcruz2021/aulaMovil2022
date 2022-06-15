@@ -9,13 +9,12 @@ import HomeRouter from './HomeRouter';
 
 const AppRouter = (store) => {
     const estado = useSelector((state) => state);
-    console.log(estado.auth.userGet)
     return (
         <BrowserRouter>
                 <Routes>
-                    <Route exact path="/*" element={!estado.auth.email ? <Navigate to="/login"/> : <HomeRouter />} />
-                    <Route path="/login" element={estado.auth.email ? <Navigate to="/"/> : <Login isLogin={true} />} />
-                    <Route path="/register" element={estado.auth.email ? <Navigate to="/"/> : <Login isLogin={false} />} />                
+                    <Route exact path="/*" element={!estado.auth.user  ? <Navigate to="/login"/> : <HomeRouter />} />
+                    <Route path="/login" element={estado.auth.user ? <Navigate to="/"/> : <Login isLogin={true} />} />
+                    <Route path="/register" element={estado.auth.user ? <Navigate to="/"/> : <Login isLogin={false} />} />                
                 </Routes>
         </BrowserRouter>
     );

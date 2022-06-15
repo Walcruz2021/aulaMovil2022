@@ -1,8 +1,13 @@
 import ListItem from "./ListItem";
 import "./List.css";
 import { Link } from "react-router-dom";
-
+import { useSelector } from 'react-redux'
 export default function List (){
+  const subjects = useSelector((state) => state.auth.subjects);
+  
+  let printSubjects = subjects.map((sub, i) => (
+    <ListItem key={i + sub} msg={sub.name} btn1="ver" btn2="info" />
+  ))
   return (
     <main className="main-subjects" >
       <h2>Materias</h2>
@@ -10,10 +15,10 @@ export default function List (){
         <Link className="add-btn" to='/subjects/add'> Agregar Materia</Link>
         <div className="box-subjects-contain" >
           <h4>Mis materias</h4>
-          <ListItem msg="Nombre" btn1="ver" btn2="info" />
-          <ListItem msg="Nombre" btn1="ver" btn2="info" />
-          <ListItem msg="Nombre" btn1="ver" btn2="info" />
-          <ListItem msg="Nombre" btn1="ver" btn2="info" />
+          {
+            subjects.length > 0 ? printSubjects : <p className="not-subjects">No estas inscripto en ninguna materia</p>
+          }
+          
         </div>
       </div>
 

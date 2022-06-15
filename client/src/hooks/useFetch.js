@@ -5,7 +5,6 @@ const UseFetch = async (url) => {
     try {
         let response = await axios(url)
         data = response
-        console.log(data)
     } catch (error) {
         console.log(error)
     }

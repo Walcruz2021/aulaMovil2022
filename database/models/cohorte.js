@@ -13,14 +13,21 @@ const CohorteSchema = new Schema({
       ref: "student",
     },
   ],
-  nameTeacher: {
-    type: String
+  lasNameTeacher:{
+    type:String
   },
-  nameMateria:{
-    type:Object
-  },
+  materias:[{
+    type:Schema.Types.ObjectId,
+    ref:"Materia"
+  }],
   cantStudenst:{
     type: Number
+  },
+  dateIni:{
+    type:Date,
+  },
+  dateFin:{
+    type:Date
   }
 });
 

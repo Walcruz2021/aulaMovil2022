@@ -48,6 +48,11 @@
 
 .form-avatar label{
     display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+}
+.form-avatar label:hover{
+    text-decoration: underline;
 }
 .form-avatar input{
     display: none;
@@ -85,18 +90,23 @@
     padding: 10px;
     
 }
-.input-profile input, .input-profile select, .input-password input{
-    margin-top: 5px;
-    padding: 5px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    border: 0.5px solid rgb(190, 190, 190);
-    outline: none;
+
+.input-profile input:disabled, .input-password input:disabled{
+    background-color: hsl(0, 0%, 95%);
     filter: drop-shadow(0px 4px 4px rgba(7, 7, 7, 0.25));
     -webkit-filter: drop-shadow(0px 4px 4px rgba(7, 7, 7, 0.25));
+    color: hsl(0, 0%, 60%)
+}
+.input-profile input, .input-password input{
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border: 0.5px solid rgb(223, 223, 223);
+    outline: none;
 }
 .button-container{
     padding: 10px;
@@ -118,7 +128,12 @@
 }
 
 
-
+.css-1insrsq-control{
+    filter: drop-shadow(0px 4px 4px rgba(7, 7, 7, 0.25));
+    margin-top: 5px;
+    border: 0.5px solid rgb(161, 161, 161);
+    -webkit-filter: drop-shadow(0px 4px 4px rgba(7, 7, 7, 0.25));
+}
 
 @media (min-width : 744px){
     .profile-container{

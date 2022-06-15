@@ -1,5 +1,5 @@
-import {combineReducers} from "redux";
-import authReducer from './authReducer';
+ import {combineReducers} from "redux";
+ import authReducer from './authReducer';
 // import { GET_CONTACTS } from "./actions";
 
 
@@ -30,6 +30,7 @@ import authReducer from './authReducer';
 
 // }
 
+// export default rootReducer
 export const rootReducer = combineReducers({
     auth : authReducer
 })

@@ -18,7 +18,7 @@ const addMateria = async (req, res, next) => {
 }
 
 const getMateria = async (req, res) => {
-    
+
     try {
         await Materia.find({}, function (err, materias) {
             Teacher.populate(materias, { path: "teachers" }, function (err, materias) {
@@ -29,7 +29,7 @@ const getMateria = async (req, res) => {
         })
     } catch (err) {
         console.log(err)
-    }    
+    }
 }
 
 const editMateria = async (req, res, next) => {
@@ -51,8 +51,25 @@ const editMateria = async (req, res, next) => {
 
 }
 
+const getMateriaId = async (req, res, next) => {
+    try {
+        await Materia.findById(req.params.idMateria, {}, function (err, materias) {
+            Teacher.populate(materias, { path: "teachers" }, function (err, materias) {
+                res.status(200).json({
+                    materias: materias
+                })
+            })
+        })
+
+    } catch (err) {
+        next(err)
+    }
+
+}
+
 module.exports = {
     addMateria,
     getMateria,
-    editMateria
+    editMateria,
+    getMateriaId
 }

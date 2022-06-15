@@ -1,13 +1,18 @@
 import React from "react";
 import "../../styles/topBar.css";
 import { Link } from "react-router-dom";
+import { useSelector , useDispatch } from "react-redux"
+import { logout } from "../../actions/authLogin";
+import { useEffect } from "react";
 
-const Topbar = () => {
+const Topbar = ({user}) => {
+  const student = useSelector(state => state.auth.student)
+  const users = useSelector(state => state.auth.user)
+  const dispatch = useDispatch()
   const handleDisplay = () => {
     let display = document.querySelector(".top-bar");
     let $burger = document.querySelector(".burger");
     let $closed = document.querySelector(".closed");
-
     if (!$burger.classList.contains("ds-none")) {
       $burger.classList.add("ds-none");
       $closed.classList.remove("ds-none");
@@ -19,6 +24,13 @@ const Topbar = () => {
     }
   };
 
+  const handleClick = (e)=>{
+    dispatch(logout())
+  }
+  useEffect(() => {
+
+  }, [student]);
+
   return (
     <div className="top-bar-contain">
       <div className="burger-menu">
@@ -29,10 +41,10 @@ const Topbar = () => {
         <div className="avatar-contain">
           <img
             className="imag-avatar"
-            src="/web-developer-design-vector-5884837.jpg"
+            src={ student.avatar ? student.avatar : '/default-image-avatar.jpg'}
             alt=""
           />
-          <p>Marcos Britos</p>
+          <p>{student.firstName ? student.firstName : users.email}</p>
         </div>
         <ul className="list-btn-navbar">
           <li className="item-navbar">
@@ -46,12 +58,12 @@ const Topbar = () => {
             </Link>
           </li>
           <li className="item-navbar">
-            <Link to="/user/profile/6290328166920c04f471eb98">
+            <Link to={`/user/profile/${user.id}`}>
               <i className="fa fa-fw fa-user"></i> Perfil
             </Link>
           </li>
           <li className="item-navbar">
-            <Link to="#contact">
+            <Link to="/" onClick={handleClick}>
               <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
             </Link>
           </li>
