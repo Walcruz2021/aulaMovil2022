@@ -75,10 +75,11 @@ app.get("/user", (req, res) => {
 
 //----------------------------------------- END OF ROUTES---------------------------------------------------
 //Start Server
-app.listen(3001, () => {
-  console.log("Server Has Started");
-});
+// app.listen(PORT, () => {
+//   console.log("Server Has Started");
+// });
 
+app.listen(PORT, console.log(`Server is starting at ${PORT}`));
 
 /////////////////////
 app.use(morgan('tiny'));
