@@ -9,7 +9,9 @@ const FormSearch = ({setState, setKeyword}) => {
         setState(newSubjects)
     }
     const apiCall = async()=>{
-        let data = await UseFetch('http://localhost:3001/mat/getMateria')
+        //let data = await UseFetch('http://localhost:3001/mat/getMateria')
+        let data = await UseFetch(`/mat/getMateria`)
+        
         return data
     }
     const handleSubmit = async (e)=>{

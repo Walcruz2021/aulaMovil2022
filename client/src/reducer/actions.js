@@ -6,7 +6,8 @@ import formatDate from '../helpers/formatDate'
 
 export function getStudents() {
   return async function (dispatch) {
-    const students = await axios.get("http://localhost:3001/stu/getStudents/", {});
+    //const students = await axios.get("http://localhost:3001/stu/getStudents/", {});
+    const students = await axios.get(`/stu/getStudents/`, {});
     return dispatch({
       type: types.GET_STUDENTS,
       payload: students.data.students
@@ -49,7 +50,7 @@ export function addMateriaStudents(payload, idStudent) {
 
   return async function (dispatch) {
     try {
-      var newMateria = await axios.post(`http://localhost:3001/stu/addMateriaStu/${idStudent}`, payload);
+      var newMateria = await axios.post(`/stu/addMateriaStu/${idStudent}`, payload);
       return newMateria
     } catch (err) {
       console.log(err)
@@ -73,7 +74,7 @@ export function getMaterias(data) {
 ///////////////////////TEACHER////////////////////////////////
 export function getTeachers() {
   return async function (dispatch) {
-    const teachers = await axios.get("http://localhost:3001/api/getTeacher/", {});
+    const teachers = await axios.get(`/api/getTeacher/`, {});
     return dispatch({
       type: types.GET_TEACHERS,
       payload: teachers.data.buscado

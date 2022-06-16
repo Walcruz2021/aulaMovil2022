@@ -55,7 +55,8 @@ const DataUser = ({ data, email, id }) => {
 
   const apiPut = async (values) => {
     let resolve = await UseFetchPost(
-      `${host.development}/stu/editStudents/${id}`,
+      `/stu/editStudents/${id}`,
+      //`${host.development}/stu/editStudents/${id}`
       values,
       "put"
     );

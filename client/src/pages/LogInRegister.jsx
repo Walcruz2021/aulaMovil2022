@@ -26,7 +26,8 @@ export default function LoginInRegister({ isLogin }) {
   });
   const postApi = async (keyword)=>{
     if (isLogin) {
-      let data = await UseFetchPost(`${host.development}/stu/login`, keyword);
+      //let data = await UseFetchPost(`${host.development}/stu/login`, keyword);
+      let data = await UseFetchPost(`/stu/login`, keyword);
       if (data.status === 200) {
         dispatch(startLogin(data.data));
         navigate("/");
@@ -35,7 +36,8 @@ export default function LoginInRegister({ isLogin }) {
       }
     } else {
       let data = await UseFetchPost(
-        `${host.development}/stu/register`,
+        //`${host.development}/stu/register`,
+        `/stu/register`,
         keyword
       );
       if (data.status === 200) {
