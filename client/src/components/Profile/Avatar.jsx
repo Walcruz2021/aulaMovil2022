@@ -28,7 +28,7 @@ const Avatar = () => {
   const apiPost= (file)=>{
     let body = new FormData
     body.append("avatar", file)
-    axios.put(`${host.development}/stu/editAvatar/${estado.user.id}`, body ,{headers: {
+    axios.put(`/stu/editAvatar/${estado.user.id}`, body ,{headers: {
       "Content-Type": "multipart/form-data",
     }})
     .then(response=>{
