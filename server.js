@@ -29,8 +29,10 @@ const Image = require("./database/models/image");
 const fileUpload = require("express-fileupload")
 
 //----------------------------------------- END OF IMPORTS---------------------------------------------------
+const urlMongo=process.env.MONGODB_URI
+console.log(urlMongo)
 mongoose.connect(
-  "mongodb+srv://AulaVirtual2022:nocountryvirtual@aulavirtual.9kdbn.mongodb.net/test" || 'mongodb://localhost/mern_youtube',
+  urlMongo || 'mongodb://localhost/mern_youtube',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
