@@ -64,6 +64,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use("/public",express.static(`${__dirname}/storage/imgs`))
 app.use(cookieParser("secretcode"));
 app.use(passport.initialize());
 app.use(passport.session());

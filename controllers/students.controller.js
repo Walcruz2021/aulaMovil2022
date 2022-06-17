@@ -40,7 +40,7 @@ let path = require('path')
 }
 
 const editStudents = async (req, res, next) => {
-  const { firstName, lastName, dni,dateNac, address, country, province, username, phone, status, cohorte} = req.body;
+  const { firstName, lastName, dni,dateNac, address, country, province, username, phone, status, cohorte,avatar} = req.body;
   
   const newStudent = {
     firstName: firstName,
@@ -54,9 +54,16 @@ const editStudents = async (req, res, next) => {
     phone: phone,
     status: status,
     cohorte: cohorte,
+    avatar:avatar
     //imagen:idImage
   }
   //const imagen=req.files.variable
+
+
+if(req.file){
+  const {filename}=req.file
+  newStudent.setImgUrl(filename)
+}
 
   try {
     
@@ -68,6 +75,8 @@ const editStudents = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+
+
 }
 
 const uploadAvatar = async (req, res, next) => {
@@ -177,6 +186,6 @@ module.exports = {
   getStudents,
   getStudentsId,
   addMateriaStu,
-  editStudents,
-  uploadAvatar
+  editStudents
+  //uploadAvatar
 }
