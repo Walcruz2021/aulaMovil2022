@@ -74,8 +74,9 @@ const uploadAvatar = async (req, res, next) => {
   try {
     let response = await imgbbUploader(process.env.API_KEY_IMGBB, path.join(__dirname, `../files/${req.file.filename}`))
     if(response){
-      if (fs.existsSync('./files/' + req.file.filename) && req.file.filename !== "default-image.png") {
-        fs.unlinkSync(`./files/${req.file.filename}`)
+      console.log(fs.existsSync(path.join(__dirname, '../files/' + req.file.filename)))
+      if (fs.existsSync(path.join(__dirname, '../files/' + req.file.filename)) && req.file.filename !== "default-image.png") {
+        fs.unlinkSync(path.join(__dirname,`../files/${req.file.filename}`))
       } else {
         console.log('no se encontro el archivo')
       }
@@ -85,6 +86,7 @@ const uploadAvatar = async (req, res, next) => {
       msg: "usuario actualizado",
       response
     });
+    // res.sendFile(path.join(__dirname,'../files/' + req.file.filename))
   } catch (error) {
     next(error)
   }
