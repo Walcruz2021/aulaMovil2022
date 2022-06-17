@@ -2,12 +2,20 @@ import React from "react";
 import axios from 'axios';
 import host from "../../helpers/host";
 import {useSelector } from 'react-redux'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sweet from 'sweetalert2'
 
-const Avatar = () => {
+const Avatar = ({setLoader, scrollEnable, scrollDisabled}) => {
   const [File, setFile] = useState("");
   const estado = useSelector(state => state.auth)
+  const [scrollLoad, setscrollLoad] = useState('0px');
+  
+  const handleScroll = () => {
+    window.addEventListener('scroll', ()=>{
+      setscrollLoad(`${window.scrollY}px`)
+    })
+  };
+  handleScroll()
   
   const handleChange = () => {
     let $img = document.querySelector("#image-avatar");
@@ -32,6 +40,9 @@ const Avatar = () => {
       "Content-Type": "multipart/form-data",
     }})
     .then(response=>{
+      setLoader(false)
+      scrollEnable()
+      console.log(response)
       sessionStorage.setItem('student', JSON.stringify({...estado.student, avatar : response.data.response.url}))
       Sweet.fire({
         icon: "success",
@@ -46,12 +57,21 @@ const Avatar = () => {
 
   }
   const handleSubmit = (e)=>{
+    setLoader(true)
+    scrollDisabled()
     e.preventDefault()
     apiPost(File)
   
     
   }
 
+  useEffect(() => {
+    let load = document.querySelector('.loader-container')
+    if (load) {
+      load.style.top = scrollLoad
+    }
+    
+  }, [Error]);
   return (
     <div className="avatar-container">
       <div className="image-avatar-contain">

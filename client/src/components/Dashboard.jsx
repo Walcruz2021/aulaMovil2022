@@ -14,6 +14,9 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   async function getData() {
     const data = await UseFetch(`${host.development}/stu/getStudent/${estado.auth.user.id}`);
+    if (data.status === 200) {
+      setload(false)
+    }
     dispatch(getMaterias(data.data.students.materias));
     dispatch(getStudent(data.data.students));
   }
@@ -41,6 +44,7 @@ const Dashboard = () => {
   // console.log(materias, "listado de Materias");
   // console.log(teachers,"listado de teachers");
   const [chat, setChat] = useState("");
+  const [load, setload] = useState(true);
 
   const chats = [
     {
@@ -51,27 +55,16 @@ const Dashboard = () => {
 
   const [conversation, setConversation] = useState(chats);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setChat(e.target.value);
-  };
+  useEffect(() => {
+  }, [load]);
 
-  const addBubble = (e) => {
-    e.preventDefault();
-
-    setConversation((prevConversation) => [
-      ...prevConversation,
-      {
-        text: chat,
-        date: new Date().toLocaleDateString().toString(),
-      },
-    ]);
-  };
 
   return (
     <>
+      { load ? <Loader /> : ""}
       {!student.loading ? (     
         <section className="dashboard-wrapper">
+          
           <section className="main-section">
             <h2 className="main-title">Dashboard</h2>
             { !student.status ? <span className="danger-new">No estas asignado una COHORTE/MATERIA, por favor completa primeros tus datos antes de inscribirte</span> : ""}
@@ -113,15 +106,6 @@ const Dashboard = () => {
                   </div>
                 </div>
               ))}
-            </article>
-
-            <article className="main-subsection">
-              <input type="text" value={chat} onChange={handleChange} />
-              <div className="date-info">
-                <button onClick={addBubble} type="button">
-                  Aceptar
-                </button>
-              </div>
             </article>
           </section>
 

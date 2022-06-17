@@ -73,7 +73,30 @@ li{
   padding-bottom: 8px;
 }
 
+.danger-msg-form{
+  color: red;
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  bottom: 50%;
+  right: 0px;
+  width: 100%;
+  text-align: center;
+}
 
 .invalid{
-  border: 1px solid red;
+  border: 1px solid red !important;
+}
+
+@media (min-width : 744px) {
+  .danger-msg{
+    bottom: -40px;
+  }
+}
+
+@media (min-width : 1440px) {
+  .danger-msg{
+    bottom: -15px;
+  }
 }

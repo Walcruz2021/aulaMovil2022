@@ -1,7 +1,6 @@
 const host ={
-    development : "https://localhost:3001",
+    development : "https://back-forked-no-country.herokuapp.com",
     production : ""
 }
-//development "https://aulavirtual.onrender.com",
 
 module.exports = host

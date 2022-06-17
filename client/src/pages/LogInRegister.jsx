@@ -27,17 +27,18 @@ export default function LoginInRegister({ isLogin }) {
   const postApi = async (keyword)=>{
     if (isLogin) {
       let data = await UseFetchPost(`${host.development}/stu/login`, keyword);
-     // let data = await UseFetchPost(`/stu/login`, keyword);
       if (data.status === 200) {
         dispatch(startLogin(data.data));
         navigate("/");
       } else {
-        seterrorMsg({resError : "Contraseña o email incorrectos"})
+        seterrorMsg({
+          ...errorMsg,
+          resError : "Contraseña o email incorrectos"
+        })
       }
     } else {
       let data = await UseFetchPost(
         `${host.development}/stu/register`,
-        //`/stu/register`,
         keyword
       );
       if (data.status === 200) {
@@ -78,7 +79,6 @@ export default function LoginInRegister({ isLogin }) {
       postApi(keyword)
     }
   };
-  console.log(errorMsg.emailError.length)
   useEffect(() => {}, [errorMsg]);
 
   return (
@@ -86,7 +86,7 @@ export default function LoginInRegister({ isLogin }) {
       <form id="login-body" onSubmit={HandleSubmit}>
         <h2>{isLogin ? "Ingresa" : "Registrate"}</h2>
         <div className="input-contain-login">
-          <div id="log-input-field-holder">
+          <div className="log-input-field-holder">
             <h6>Email</h6>
             <input
               type="text"
@@ -98,7 +98,7 @@ export default function LoginInRegister({ isLogin }) {
             />
             <span className="danger-msg">{errorMsg.emailError}</span>
           </div>
-          <div id="log-input-field-holder">
+          <div className="log-input-field-holder">
             <h6>Contraseña</h6>
             <input
               type="password"
@@ -111,7 +111,7 @@ export default function LoginInRegister({ isLogin }) {
             <span className="danger-msg">{errorMsg.passError}</span>
           </div>
           {!isLogin ? (
-            <div id="log-input-field-holder">
+            <div className="log-input-field-holder">
               <h6>Confirmar contraseña</h6>
               <input
                 type="password"

@@ -15,7 +15,6 @@ const Profile = () => {
 
     let apiCall = async ()=>{ 
         let resolve = await UseFetch(`${host.development}/stu/getStudent/${estado.auth.user.id}`);
-        //let resolve = await UseFetch(`/stu/getStudent/${estado.auth.user.id}`);
         if(resolve.status === 200){
             dispatch(getStudent(resolve.data.students));
         }

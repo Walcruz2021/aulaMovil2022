@@ -22,6 +22,5 @@ const students = new Schema({
     avatar:{type:String,require:true},
 })
 
-
 module.exports = mongoose.model('Students', students);
 

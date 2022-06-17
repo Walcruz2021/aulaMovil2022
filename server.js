@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
@@ -29,9 +28,8 @@ const getStudentsId = require("./controllers/students.controller")
 const Image = require("./database/models/image");
 const fileUpload = require("express-fileupload")
 
-//----------------------------------------- END OF IMPORTS---------------------------------------------------
 const urlMongo=process.env.MONGODB_URI
-console.log(urlMongo)
+//----------------------------------------- END OF IMPORTS---------------------------------------------------
 mongoose.connect(
   urlMongo || 'mongodb://localhost/mern_youtube',
   {
@@ -53,7 +51,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000", // <-- location of the react app were connecting to
+    origin: process.env.HOSTFRONT, // <-- location of the react app were connecting to
     credentials: true,
   })
 );
@@ -64,7 +62,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use("/public",express.static(`${__dirname}/storage/imgs`))
 app.use(cookieParser("secretcode"));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -79,11 +76,10 @@ app.get("/user", (req, res) => {
 
 //----------------------------------------- END OF ROUTES---------------------------------------------------
 //Start Server
-// app.listen(PORT, () => {
-//   console.log("Server Has Started");
-// });
+app.listen(3001, () => {
+  console.log("Server Has Started");
+});
 
-app.listen(PORT, console.log(`Server is starting at ${PORT}`));
 
 /////////////////////
 app.use(morgan('tiny'));

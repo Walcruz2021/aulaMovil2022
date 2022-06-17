@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import Select from "react-select"
 
-const SelectCountry = ({province, disabled}) => {
+const SelectCountry = ({province, disabled, selectError}) => {
   const [Provinces, setProvinces] = useState([]);
   const [value, setValue] = useState({
     value : province,
@@ -34,30 +34,8 @@ const SelectCountry = ({province, disabled}) => {
       })
       .catch((error) => console.log(error));
   };
-  let options= [{value: 'Buenos Aires', label: 'Buenos Aires'},
-  {value: 'Catamarca', label: 'Catamarca'},
-  {value: 'Chaco', label: 'Chaco'},
-  {value: 'Chubut', label: 'Chubut'},
-  {value: 'Ciudad Autónoma de Buenos Aires', label: 'Ciudad Autónoma de Buenos Aires'},
-  {value: 'Corrientes', label: 'Corrientes'},
-  {value: 'Córdoba', label: 'Córdoba'},
-  {value: 'Entre Ríos', label: 'Entre Ríos'},
-  {value: 'Formosa', label: 'Formosa'},
-  {value: 'Jujuy', label: 'Jujuy'},
-  {value: 'La Pampa', label: 'La Pampa'},
-  {value: 'La Rioja', label: 'La Rioja'},
-  {value: 'Mendoza', label: 'Mendoza'},
-  {value: 'Misiones', label: 'Misiones'},
-  {value: 'Neuquén', label: 'Neuquén'},
-  {value: 'Río Negro', label: 'Río Negro'},
-  {value: 'Salta', label: 'Salta'},
-  {value: 'San Juan', label: 'San Juan'},
-  {value: 'San Luis', label: 'San Luis'},
-  {value: 'Santa Cruz', label: 'Santa Cruz'},
-  {value: 'Santa Fe', label: 'Santa Fe'},
-  {value: 'Santiago del Estero', label: 'Santiago del Estero'},
-  {value: 'Tierra del Fuego, Antártida e Islas del Atlántico Sur', label: 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'},
-  {value: 'Tucumán', label: 'Tucumán'}]
+
+
   useEffect(() => {
     apiCall()
   }, [disabled]);
@@ -76,6 +54,7 @@ const SelectCountry = ({province, disabled}) => {
       options={Provinces}
       name="province"
     />}
+    <span className="danger-msg">{selectError}</span>
     </div>
   );
 };
